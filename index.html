@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Simple Notepad</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		body{
+			background:#f4f4f4;
+		}
+
+		header, footer{
+			text-align: center;
+		}
+
+		#container{
+			width:400px;
+			margin:50px auto;
+			background: #FFFFA5;
+			overflow:hidden;
+			padding:30px;
+		}
+
+		.clear{
+			text-decoration: none;
+			background:#333;
+			color:#fff;
+			padding:10px;
+		}
+	</style>
+	<script>
+		function getNote(){
+			if(localStorage.getItem('note')){
+				var note = localStorage.getItem('note');
+			} else {
+				var note = 'Write or edit something here and then save it in your local storage.';
+			}
+
+			document.getElementById('note').innerHTML= note;
+		}
+
+		function saveNote(id){
+			var note = document.getElementById('note').innerHTML;
+			localStorage.setItem('note', note);
+		}
+
+		function clearNote(){
+			clear: localStorage.clear();
+			return false;
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<h1>My Simple Notepad</h1>
+	</header>
+
+	<section id="container">
+		<div id="note" contenteditable="true" onkeyup="saveNote(this.id)"></div>
+	</section>
+
+	<footer>
+		<div>
+			<a href="" onclick="javascript:clearNote();" class="clear">Clear Note</a>
+		</div>
+		<br>
+		<p>My Simple Notepad &copy; 2018</p>
+		<p>Made by Ibnul Jaif Farabi</p>
+	</footer>
+
+	<script>
+		getNote();
+	</script>
+</body>
+</html>
